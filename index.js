@@ -1,6 +1,7 @@
 const express = require("express");
 const User = require("./models").user; // all models.
 const TodoList = require("./models").todoList;
+const TodoItem = require("./models").todoItem
 
 const PORT = 4001;
 const app = express();
@@ -48,5 +49,18 @@ app.get("/users/:id", async (req, res) => {
     console.log(e.message);
   }
 });
+
+app.get("/all", async (req, res) => {
+  try {
+    // .findAll => [{}, {}, {}]
+    const user = await User.findAll({ 
+      include: { model: TodoList, include: [TodoItem] } 
+    });
+    res.send(user)
+  } catch (e) {
+    console.log(e.message);
+  }
+});
+
 
 app.listen(PORT, () => console.log("server started"));
