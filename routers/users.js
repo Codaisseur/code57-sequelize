@@ -5,6 +5,7 @@ const TodoList = require("../models").todoList
 const router = new Router()
 
 //send a list of users
+//test => http :4000/users
 router.get("/", async (request, response, next) => {
   try {
     const users = await Users.findAll()
@@ -21,6 +22,7 @@ router.get("/", async (request, response, next) => {
 })
 
 //send a list of users
+//test => http :4000/users/1
 router.get("/:id", async (request, response, next) => {
   try {
 
@@ -40,6 +42,8 @@ router.get("/:id", async (request, response, next) => {
 })
 
 //create a user
+//send a list of users
+//test => http :4000/users name=Karla email=karla@karla.com password=1234 phone=5678
 router.post("/", async (request, response, next) => {
   try {
 
@@ -61,6 +65,7 @@ router.post("/", async (request, response, next) => {
 })
 
 //update a user
+//test => http PUT :4000/users/1 name=Boo
 router.put("/:id", async (request, response, next) => {
   try {
 
@@ -79,6 +84,7 @@ router.put("/:id", async (request, response, next) => {
 })
 
 //delete a user
+//test => http DELETE :4000/users/1
 router.delete("/:id", async (request, response, next) => {
   try {
 
